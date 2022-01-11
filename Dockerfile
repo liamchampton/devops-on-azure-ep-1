@@ -14,11 +14,10 @@ COPY *.go ./
 COPY views ./views
 
 #RUN go build -o website
-RUN GOOS=linux GOARCH=arm64 go build -o website
+RUN GOOS=linux GOARCH=amd64 go build -o website
 RUN chmod +x website
 
 EXPOSE 3000
 
-#CMD [ "./website" ]
-ENTRYPOINT [ "/home/website" ]
+CMD [ "./website" ]
 

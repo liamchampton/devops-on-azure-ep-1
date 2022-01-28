@@ -6,6 +6,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  TAG: v2
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,5 +22,5 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t devopsonazure.azurecr.io/devops-ep1:${{ github.sha }}
-          docker push devopsonazure.azurecr.io/devops-ep1:${{ github.sha }}
+          docker build . -t devopsonazure.azurecr.io/devops-ep1:${{ env.TAG }}
+          docker push devopsonazure.azurecr.io/devops-ep1:${{ env.TAG }}

@@ -8,7 +8,7 @@ import (
 func renderIndex(c *fiber.Ctx) error {
 	return c.Render("index", fiber.Map{
 		"Title":       "Welcome to DevOps on Azure",
-		"Description": "We are now using a CI/CD pipeline!",
+		"Description": "This is V2 container with automated deployment",
 	}, "layouts/main")
 }
 

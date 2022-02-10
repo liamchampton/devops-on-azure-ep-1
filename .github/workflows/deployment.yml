@@ -17,7 +17,7 @@ jobs:
 
       - uses: azure/docker-login@v1
         with:
-          login-server: devopsonazure.azurecr.io
+          login-server: devopstestcr.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 

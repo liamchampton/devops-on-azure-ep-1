@@ -8,6 +8,8 @@ on:
 
 env:
   TAG: v1
+  SERVER: devopstestcr.azurecr.io
+  IMAGE: devops-test
 
 jobs:
   build:
@@ -15,12 +17,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Test
+        run: go test -v ./...
+
       - uses: azure/docker-login@v1
         with:
-          login-server: devopstestcr.azurecr.io
+          login-server: ${{ env.SERVER }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t devopstestcr.azurecr.io/devops-test:${{ env.TAG }}
-          docker push devopstestcr.azurecr.io/devops-test:${{ env.TAG }}
+          docker build . -t ${{ env.SERVER }}/${{ env.IMAGE }}:${{ env.TAG }}
+          docker push ${{ env.SERVER }}/${{ env.IMAGE }}:${{ env.TAG }}
